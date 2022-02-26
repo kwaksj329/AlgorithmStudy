@@ -1,25 +1,17 @@
 import sys
+from itertools import combinations
 input = sys.stdin.readline
 
 n = int(input())
 road = list(map(int, input().split()))
 cost = list(map(int, input().split()))
+min = cost[0]
+sum = 0
 
-all = []
-all.append([road])
-a = all[:]
+for i in range(n-1):
 
-for j in range(n-2):
+  if min > cost[i]:
+    min = cost[i]
+  sum += (min * road[i])
 
-  realtemp = []
-
-  for temp in a:
-    for i in range(1, len(temp)):
-      new = temp[:]
-      new[i-1] += new[i]
-      del new[i]
-      realtemp.append(new)
-      all.append(new)
-      print(new, realtemp, a)    
-
-  a = realtemp[:]
+print(sum)
