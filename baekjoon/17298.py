@@ -5,7 +5,11 @@ n = int(input())
 
 number = list(map(int, input().split()))
 ans = [-1]
-maximum = number.pop()
+if n >= 2:
+  if number[-1] <= number[-2]:
+    maximum = -1
+  else:
+    maximum = number[-1]
 
 while number:
   
@@ -16,8 +20,11 @@ while number:
       ans.append(temp)
       maximum = temp
     else:
-      if number[-1] >= temp:
-        ans.append(-1)
+      if len(number) == 1:
+        if number[-1] >= maximum:
+          ans.append(-1)
+        else:
+          ans.append(maximum)
       else:
         ans.append(maximum)
 
